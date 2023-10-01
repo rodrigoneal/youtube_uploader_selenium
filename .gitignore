@@ -78,3 +78,4 @@ fabric.properties
 /cookies/
 *.pkl
 *.mp4
+.env

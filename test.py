@@ -1,9 +1,15 @@
-from youtube_uploader_selenium import YouTubeUploader
-video_path = "video.mp4"
-metadata_path = "meta.json"
+import undetected_chromedriver as uc
+from dotenv import dotenv_values
+
+from youtube_uploader_selenium.page.pages import LoginPage
 
 
-uploader = YouTubeUploader(video_path, metadata_path)
-was_video_uploaded, video_id = uploader.upload()
-assert was_video_uploaded
+config = dotenv_values()
+
+driver = uc.Chrome()
+
+driver.get("https://www.youtube.com")
+
+page_login = LoginPage(driver)
+page_login.login.make_login(config["email"], config["password"], time_wait_login_two_factor=20)
 

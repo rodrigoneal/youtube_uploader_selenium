@@ -11,7 +11,6 @@ from datetime import datetime
 import json
 import time
 
-from youtube_uploader_selenium.util import handle_cookie
 from .Constant import *
 from pathlib import Path
 import logging
@@ -73,7 +72,7 @@ class YouTubeUploader:
 		self.browser.get(Constant.YOUTUBE_URL)
 		time.sleep(Constant.USER_WAITING_TIME)
 
-		if handle_cookie.has_cookie(self.browser):
+		if handle_cookie.has_cookie():
 			handle_cookie.load_cookies(self.browser)
 			self.logger.debug("Loaded cookies from")
 			time.sleep(Constant.USER_WAITING_TIME)
