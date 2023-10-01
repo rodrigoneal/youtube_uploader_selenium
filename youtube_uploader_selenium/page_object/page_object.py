@@ -12,16 +12,20 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+from youtube_uploader_selenium.log.logger import get_logger
 
+log = get_logger("youtube_uploader_selenium", verbose=True)
 
 class SeleniumObject:
     """Pattern Page Objects
     """
 
     def save_cookie(self):
+        log.info("Saving cookies...")
         pickle.dump(self.driver.get_cookies(), open("cookies.pkl", "wb"))
     
     def load_cookie(self):
+        log.info("Loading cookies...")
         if not Path("cookies.pkl").exists():
             return False
         cookies = pickle.load(open("cookies.pkl", "rb"))
@@ -29,8 +33,9 @@ class SeleniumObject:
             self.driver.add_cookie(cookie)
         return True
 
-    @property
+
     def has_youtube_cookie(self) -> bool:
+        log.info("Verifying cookies...")
         if not Path("cookies.pkl").exists():
             return False
         cookies = pickle.load(open("cookies.pkl", "rb"))
