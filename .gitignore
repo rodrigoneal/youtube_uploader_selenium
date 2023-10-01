@@ -76,3 +76,5 @@ fabric.properties
 # Project temp data
 /youtube_uploader_selenium/__pycache__/
 /cookies/
+*.pkl
+*.mp4
