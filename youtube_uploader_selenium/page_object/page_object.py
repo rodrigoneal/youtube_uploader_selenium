@@ -27,9 +27,11 @@ class SeleniumObject:
     def load_cookie(self):
         log.info("Loading cookies...")
         if not Path("cookies.pkl").exists():
+            log.info("No cookies found.")
             return False
         cookies = pickle.load(open("cookies.pkl", "rb"))
         for cookie in cookies:
+            log.debug(f"Adding cookie: {cookie}")
             self.driver.add_cookie(cookie)
         return True
 
